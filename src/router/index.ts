@@ -1,25 +1,50 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import PosView from '../views/PosView.vue'
+import SettingsView from '../views/SettingsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "pos",
+    component: PosView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/settings",
+    name: "settings",
+    component: SettingsView
+  },
+  // {
+  //   path: "/history",
+  //   name: "history",
+  //   component: () =>
+  //     import(/* webpackChunkName: "history" */ "../views/HistoryView.vue"),
+  // },
+  // {
+  //   path: "/receive/:requestAmount",
+  //   name: "receive",
+  //   component: () =>
+  //     import(/* webpackChunkName: "quickpay" */ "../views/QuickPayView.vue"),
+  //   props: true,
+  // },
+  {
+    path: "/node-checker",
+    name: "node-checker",
+    component: () =>
+      import(
+        /* webpackChunkName: "nodechecker" */ "../views/NodeCheckerView.vue"
+      ),
+  },
+];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  history: createWebHashHistory(),
+  routes,
+});
+
+router.beforeEach((to) => {
+  if (!to.name) {
+    router.push({ name: 'pos' })
+  }
 })
 
-export default router
+export default router;

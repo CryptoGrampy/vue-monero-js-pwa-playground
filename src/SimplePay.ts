@@ -10,10 +10,8 @@ import monerojs, {
 } from "monero-javascript";
 import { ref } from "vue";
 
-
 // TODO replace with callback init method and use vue store
 export const simplePayReady = ref(false);
-export const data = ref('something')
 
 // TODO Use monerojs class
 export enum Network {
@@ -184,7 +182,7 @@ export class SimplePay {
     requestedConfirmations?: number
   ): Promise<PaymentRequest> {
     const integratedAddressState: monerojs.MoneroIntegratedAddress =
-      await this.wallet.getIntegratedAddress();
+      await this.wallet.getIntegratedAddress('');
 
     console.log(
       "current primary address",
@@ -250,8 +248,6 @@ export class SimplePay {
     console.log(
       `[event] Height: ${height} | StartHeight: ${startHeight} EndHeight: ${endHeight}`
     );
-
-    data.value = height
     this.syncProgress = percentDone * 100;
     console.debug("[event] sync", this.syncProgress, "%");
 

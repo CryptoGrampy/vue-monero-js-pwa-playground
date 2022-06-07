@@ -1,18 +1,25 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import { Network, SimplePay } from "./SimplePay";
+import ElementPlus from "element-plus";
 import './registerServiceWorker'
-import router from './router'
-import { SimplePay, Network } from './SimplePay';
+import { createPinia } from "pinia";
+import router from "./router";
+import 'element-plus/dist/index.css'
 
+// TODO: optional config in simplepay constructor to get rid of these dummy vals
 export const simplePay: SimplePay = new SimplePay({
-    primaryAddress: "49ouNFXbQxj72FYjEgRjVTa35dHVrSL118vNFhxDvQWHJYpZp523EckbrqiSjM6Vb1H6Ap43qYpNRHBaVS9oBFtZUeTaH88",
-    secretViewKey: "9fb781ad709a41bd651f92c2e380813b9ca8abfb7e733105202e1d9f12799c03",
-    network: Network.mainnet,
-    defaultConfirmations: 0,
-    monerodUsername: "",
-    monerodPassword: "",
-    monerodUri: "https://community.organic-meatballs.duckdns.org:443",
+  primaryAddress: "",
+  secretViewKey: "",
+  network: Network.mainnet,
+  defaultConfirmations: 1,
+  monerodUsername: "",
+  monerodPassword: "",
+  monerodUri: "",
 });
 
-
-createApp(App).use(router).mount('#app')
+const app = createApp(App);
+app.use(ElementPlus);
+app.use(router as any)
+app.use(createPinia() as any);
+app.mount("#app");

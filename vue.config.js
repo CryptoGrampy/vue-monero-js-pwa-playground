@@ -3,8 +3,11 @@ const { defineConfig } = require('@vue/cli-service')
 const path = require("path");
 const { ProvidePlugin } = require("webpack");
 
-
 module.exports = defineConfig({
+  pwa: {
+    name: 'HotShop',
+    themeColor: '#ff6600',
+  },
   transpileDependencies: true,
   configureWebpack: {
     resolve: {
