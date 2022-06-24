@@ -8,7 +8,8 @@ module.exports = defineConfig({
     name: 'HotShop',
     themeColor: '#ff6600',
   },
-  transpileDependencies: true,
+  productionSourceMap: false,
+  transpileDependencies: ['monero-javascript'],
   configureWebpack: {
     resolve: {
       alias: {
@@ -52,20 +53,13 @@ module.exports = defineConfig({
       new CopyPlugin({
         patterns: [
           {
-            from: "**.{js,wasm}",
-            context: path.resolve(
-              __dirname,
-              "node_modules/monero-javascript/dist"
-            ),
-            to: path.resolve(__dirname, "dist/js")
+            from: "node_modules/monero-javascript/dist/monero_wallet_full.wasm",
+           
+            to: path.resolve(__dirname, "dist")
           },
           {
-            from: "**.{js,wasm}",
-            context: path.resolve(
-              __dirname,
-              "node_modules/monero-javascript/dist"
-            ),
-            to: path.resolve(__dirname, "dist/")
+            from: "node_modules/monero-javascript/dist/monero_web_worker.js",
+            to: path.resolve(__dirname, "dist")
           },
         ],
       }),

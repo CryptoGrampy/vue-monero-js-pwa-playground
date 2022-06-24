@@ -16,6 +16,7 @@ type MoneroRpcConfig = {
 declare module "monero-javascript" {
   declare namespace LibraryUtils {
     function loadFullModule(): Promise<MoneroWalletFull>;
+    function setWorkerDistPath(path: string): void;
     function loadKeysModule(): Promise<MoneroWalletKeys>;
   }
 
@@ -100,6 +101,7 @@ declare module "monero-javascript" {
   }
 
   declare namespace MoneroUtils {
+    function setProxyToWorker(proxyToWorker: boolean): void;
     function validatePrivateViewKey(viewKey: string): void;
     function isValidAddress(
       address: string,
