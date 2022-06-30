@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import ReceiveComponent from "../components/ReceiveComponent.vue";
 import { simplePayReady } from "../SimplePay";
 
@@ -22,4 +22,4 @@ const props = defineProps<{
 body {
   word-wrap: break-word;
 }
-</style>
+</style> -->

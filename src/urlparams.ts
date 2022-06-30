@@ -61,7 +61,7 @@ export const getConfigFromHash = (): HotShopConfig => {
         shopName: 'HotShop',
         displayShopName: true,
         kiosk: false,
-        logoUrl: "/assets/images/monero-symbol-480.png",
+        logoUrl: "/img/monero-symbol-480.png",
       }
     }
 

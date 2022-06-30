@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "preview": "npx http-server dist",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "vue-cli-service serve",
+    "preview": "npx http-server dist"
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^2.0.0",
