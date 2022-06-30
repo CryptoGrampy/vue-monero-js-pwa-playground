@@ -7,6 +7,7 @@ import {
 } from "../urlparams";
 import { simplePay } from "../main";
 import { ExchangeCurrencyOptions } from "./currency";
+import { get, set } from 'idb-keyval';
 
 /**
  * - store hashfragments here
@@ -85,13 +86,34 @@ export const useConfigStore = defineStore("hot-shop-config", {
   actions: {
     async init() {
       const hashConfig = getConfigFromHash();
-      this.$state = { ...this.$state, ...hashConfig };
+      const cachedConfig = await get('config');
+
+      /**
+       * check for hashconfig
+       * check for cachedHashConfig
+       * 
+       * if hashconfig, use hashconfig
+       * else if cachedHashConfig, use cachedHashConfig
+       * 
+       * else return
+       */
+
+      // TODO: Add a 'usingDefaultConfig' flag to HotShopConfig
+      // User has provided a custom hash fragment
+      if (hashConfig.payment.primaryAddress !== '49ouNFXbQxj72FYjEgRjVTa35dHVrSL118vNFhxDvQWHJYpZp523EckbrqiSjM6Vb1H6Ap43qYpNRHBaVS9oBFtZUeTaH88') {
+        this.$state = { ...this.$state, ...hashConfig };
+      } else if (cachedConfig) {
+        this.$state = { ...this.$state, ...JSON.parse(cachedConfig) };
+      } else {
+        this.$state = { ...this.$state, ...hashConfig };
+      }
+
       await simplePay.updateConfig(this.payment);
     },
     increment(): void {
       this.payment.defaultConfirmations++;
     },
-    updateUserConfig(updatedConfig: UserConfig) {
+    updateConfig(updatedConfig: UserConfig) {
       this.user = { ...this.user, ...updatedConfig };
     },
     getStaticConfig(): HotShopConfig {

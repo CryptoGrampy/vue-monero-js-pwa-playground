@@ -12,6 +12,7 @@
     "@chenfengyuan/vue-qrcode": "^2.0.0",
     "@element-plus/icons-vue": "^1.1.4",
     "element-plus": "^2.2.0",
+    "idb-keyval": "^6.2.0",
     "monero-javascript": "^0.7.0",
     "pinia": "^2.0.14",
     "qrcode": "^1.5.0",
