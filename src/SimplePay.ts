@@ -296,7 +296,7 @@ export class SimplePay {
       // https://github.com/monero-ecosystem/monero-javascript/issues/76
       this.restoreHeight = await this.wallet.getDaemonHeight();
 
-      await this.wallet.setSyncHeight(this.restoreHeight - 1);
+      await this.wallet.setSyncHeight(this.restoreHeight-1);
       await this.wallet.startSyncing(10000);
     } else {
       await this.wallet.stopSyncing();
